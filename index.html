@@ -1,927 +1,503 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<meta name="description" content="ML engineering and research portfolio of Muhammad Zaid — LLM and multi-agent systems, evaluation harnesses, computer vision and acoustics. Seven projects, each with the check that backs it.">
+<meta name="description" content="Muhammad Zaid — ML engineer. LLM and multi-agent systems, evaluation harnesses, computer vision and acoustics. Seven projects, 723 offline tests, each with a live demo.">
 <meta name="author" content="Muhammad Zaid">
 <link rel="canonical" href="https://mdzayd1003.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23101A24'/%3E%3Cpath d='M18 74 L50 26 L82 74' fill='none' stroke='%23C08828' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mdzayd1003.github.io/">
-<meta property="og:title" content="Muhammad Zaid — ML engineering &amp; research">
-<meta property="og:description" content="ML engineering and research portfolio of Muhammad Zaid — LLM and multi-agent systems, evaluation harnesses, computer vision and acoustics. Seven projects, each with the check that backs it.">
+<meta property="og:title" content="Muhammad Zaid — ML Engineer">
+<meta property="og:description" content="Seven projects, 723 offline tests, seven live demos. LLM systems, evaluation, computer vision, acoustics.">
 <meta name="twitter:card" content="summary">
-
-<title>Muhammad Zaid</title>
+<title>Muhammad Zaid — ML Engineer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230C0D16'/%3E%3Cpath d='M18 74 L50 26 L82 74' fill='none' stroke='%2337E2C0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
-/* ============================================================
-   Committed single-theme design: near-black ground, one sans,
-   mono only for labels and live values. Every colour is painted
-   explicitly so the page never borrows a host background.
-   ============================================================ */
 :root{
-  --bg:#08090A; --panel:#0E1012; --sunk:#040506;
-  --ink:#F4F5F6; --ink-2:#A7ACB2; --ink-3:#70757B; --ink-4:#494E54;
-  --rule:#191C1F; --rule-2:#282C31;
-  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --gutter:clamp(20px,5vw,72px);
-  --measure:62ch;
+  --bg:#0A0B12; --bg2:#10121E; --card:#131624; --card2:#171B2C;
+  --ink:#F2F4F9; --ink2:#A9B0C6; --ink3:#6E7691;
+  --line:#222739; --line2:#2E3548;
+  --mint:#37E2C0; --violet:#8B7CF6; --amber:#F5B14C; --rose:#FF6B8B;
+  --grad:linear-gradient(100deg,#37E2C0 0%,#5AC8FA 42%,#8B7CF6 100%);
+  --sans:"Sora","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(18px,4.4vw,60px);
+}
+html[data-theme="light"]{
+  --bg:#F6F7FB; --bg2:#EEF0F7; --card:#FFFFFF; --card2:#F4F6FB;
+  --ink:#131628; --ink2:#4A5169; --ink3:#7A829B;
+  --line:#E2E5EF; --line2:#D2D7E6;
+  --mint:#0FA98C; --violet:#6D5BE0; --amber:#B9791A; --rose:#D6335C;
+  --grad:linear-gradient(100deg,#0FA98C 0%,#1C8FD6 42%,#6D5BE0 100%);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
 body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font:400 17px/1.62 var(--sans); letter-spacing:-0.005em;
-  -webkit-font-smoothing:antialiased;
+  margin:0;background:var(--bg);color:var(--ink);
+  font:400 16px/1.68 var(--sans);-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1100px 520px at 78% -8%,rgba(139,124,246,.16),transparent 62%),
+                   radial-gradient(860px 440px at 4% 8%,rgba(55,226,192,.11),transparent 60%);
+  background-attachment:fixed;
 }
-.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
-a{color:inherit}
 img{max-width:100%}
-::selection{background:var(--ink);color:var(--bg)}
-:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+::selection{background:var(--mint);color:#07121C}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
 
-.eyebrow{
-  font:500 11px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-3); margin:0;
-}
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:62px}
+.logo{font:800 19px/1 var(--sans);letter-spacing:-.03em}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.navlinks{margin-left:auto;display:flex;gap:22px}
+.navlinks a{font:500 14px/1 var(--sans);color:var(--ink2);text-decoration:none}
+.navlinks a:hover{color:var(--ink)}
+.tbtn{border:1px solid var(--line2);background:var(--card);color:var(--ink2);border-radius:999px;
+  width:36px;height:36px;cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center}
+.tbtn:hover{color:var(--ink);border-color:var(--mint)}
+.greet{font:500 12.5px/1 var(--mono);color:var(--ink3);white-space:nowrap}
 
-/* ---------- top bar ---------- */
-.topbar{
-  position:sticky; top:0; z-index:40; background:rgba(8,9,10,.82);
-  backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);
+/* ---------- badges ---------- */
+.avail{
+  display:inline-flex;align-items:center;gap:9px;margin:0 0 18px;
+  background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:8px 15px;
+  font:500 12.5px/1 var(--sans);
 }
-.topbar .wrap{display:flex;align-items:center;gap:26px;height:56px}
-.brand{font:600 14px/1 var(--sans);letter-spacing:-0.01em;white-space:nowrap}
-.brand span{color:var(--ink-3);font-weight:400}
-.tagline{font:400 12px/1 var(--mono);color:var(--ink-3);white-space:nowrap}
-.topnav{margin-left:auto;display:flex;align-items:center;gap:22px}
-.topnav a{
-  font:400 13px/1 var(--sans);color:var(--ink-2);text-decoration:none;
-  border-bottom:1px solid transparent;padding-bottom:2px;
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(55,226,192,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(55,226,192,.55)}70%{box-shadow:0 0 0 10px rgba(55,226,192,0)}100%{box-shadow:0 0 0 0 rgba(55,226,192,0)}}
+.hire{
+  position:fixed;left:16px;bottom:18px;z-index:45;text-decoration:none;
+  background:var(--grad);color:#08121A;font:700 14px/1 var(--sans);
+  padding:14px 22px;border-radius:999px;box-shadow:0 12px 34px rgba(55,226,192,.28);
 }
-.topnav a:hover{color:var(--ink);border-bottom-color:var(--ink)}
-.kbd{
-  font:500 11px/1 var(--mono);color:var(--ink-3);
-  border:1px solid var(--rule-2);border-radius:3px;padding:5px 7px;background:none;cursor:pointer;
-}
-.kbd:hover{color:var(--ink);border-color:var(--ink-3)}
+.hire:hover{transform:translateY(-2px)}
 
 /* ---------- hero ---------- */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
-#motes{position:absolute;inset:auto 0 0 0;height:70%;width:100%;display:block;pointer-events:none;opacity:.85}
-.hero .wrap{position:relative;z-index:2;padding-top:clamp(40px,5.4vw,72px);padding-bottom:clamp(40px,6vw,80px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
-h1.display{
-  font:700 clamp(40px,6.4vw,92px)/0.94 var(--sans);
-  letter-spacing:-0.04em; margin:20px 0 0; text-wrap:balance;
+.hero{padding-top:clamp(34px,5vw,68px);padding-bottom:clamp(34px,5vw,64px)}
+.hero-grid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:clamp(26px,4vw,58px);align-items:center}
+.idcard{
+  background:linear-gradient(160deg,var(--card2),var(--card));
+  border:1px solid var(--line2);border-radius:20px;padding:10px;position:relative;overflow:hidden;
 }
-h1.display .fade{
-  background:linear-gradient(180deg,#E9EBED 0%,#6E7379 62%,#4A4F55 100%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
+.idcard::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;
+  background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.5;pointer-events:none}
+.mono-face{
+  aspect-ratio:1;border-radius:14px;display:grid;place-items:center;
+  background:radial-gradient(120% 120% at 30% 20%,rgba(55,226,192,.16),transparent 55%),var(--bg2);
+  border:1px solid var(--line);
 }
-.hero-lede{margin:24px 0 0;max-width:46ch;color:var(--ink-2);font-size:clamp(16px,1.35vw,19px)}
-.cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px}
-.btn{
-  font:500 14px/1 var(--sans);text-decoration:none;padding:14px 22px;border:1px solid var(--ink);
-  background:var(--ink);color:var(--bg);white-space:nowrap;
-}
-.btn:hover{background:transparent;color:var(--ink)}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule-2)}
-.btn.ghost:hover{border-color:var(--ink)}
-.btn.bare{border:0;background:none;color:var(--ink-2);padding:14px 4px;border-bottom:1px solid var(--ink-4)}
-.btn.bare:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.mono-face span{font:800 84px/1 var(--sans);letter-spacing:-.05em;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.idcard figcaption{padding:14px 10px 8px;text-align:center}
+.idcard .nm{font:700 17px/1.2 var(--sans)}
+.idcard .rl{font:400 12px/1.5 var(--mono);color:var(--ink3);margin-top:5px}
 
-/* the instrument card, tilted like a plate on a desk */
-.deck{position:relative;perspective:1400px}
-.deck-note{font:400 12px/1 var(--mono);color:var(--ink-3);margin:0 0 14px}
-.card{
-  background:var(--panel);border:1px solid var(--rule-2);
-  transform:rotateY(-11deg) rotateX(4deg) rotateZ(-1.2deg);
-  transform-origin:60% 50%;
-  box-shadow:-24px 34px 70px rgba(0,0,0,.62);
-  transition:transform .5s cubic-bezier(.2,.7,.3,1);
-}
-.deck:hover .card{transform:rotateY(-4deg) rotateX(1.5deg) rotateZ(0deg)}
-.card-head{
-  display:flex;justify-content:space-between;gap:12px;align-items:baseline;
-  padding:12px 16px;border-bottom:1px solid var(--rule);
-  font:400 10.5px/1.3 var(--mono);color:var(--ink-3);white-space:nowrap;overflow:hidden;
-}
-.card-body{padding:14px 16px 18px}
-.card svg{display:block;width:100%;height:auto}
-.card figcaption{
-  margin-top:12px;font:400 11.5px/1.6 var(--mono);color:var(--ink-3);
-}
-.card figcaption b{color:var(--ink-2);font-weight:500}
-.legend{display:flex;gap:14px;font:400 10.5px/1 var(--mono);color:var(--ink-3);white-space:nowrap}
-.legend i{display:inline-block;width:16px;height:2px;vertical-align:middle;margin-right:6px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin:0}
+h1{font:800 clamp(32px,4.4vw,52px)/1.08 var(--sans);letter-spacing:-.035em;margin:16px 0 0;text-wrap:balance}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.termline{font:500 clamp(14px,1.5vw,18px)/1.5 var(--mono);color:var(--mint);margin:16px 0 0}
+.termline .cur{display:inline-block;width:9px;background:var(--mint);animation:blink 1.05s steps(1) infinite;color:transparent}
+@keyframes blink{50%{opacity:0}}
+.hero p.sub{margin:16px 0 0;max-width:56ch;color:var(--ink2);font-size:16.5px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+.stat b{display:block;font:800 26px/1 var(--sans);letter-spacing:-.03em}
+.stat b.m{color:var(--mint)} .stat b.v{color:var(--violet)} .stat b.a{color:var(--amber)}
+.stat span{display:block;font:400 11.5px/1.4 var(--mono);color:var(--ink3);margin-top:7px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{text-decoration:none;font:600 14.5px/1 var(--sans);padding:15px 24px;border-radius:999px;white-space:nowrap}
+.btn.p{background:var(--grad);color:#08121A}
+.btn.s{border:1px solid var(--line2);color:var(--ink);background:var(--card)}
+.btn.s:hover{border-color:var(--mint)}
 
 /* ---------- sections ---------- */
-main section{border-bottom:1px solid var(--rule)}
-main section .wrap{padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(48px,6vw,88px)}
-.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:14px}
-h2{font:600 clamp(22px,2.6vw,32px)/1.15 var(--sans);letter-spacing:-0.025em;margin:0}
-.sec-intro{margin:0;max-width:var(--measure);color:var(--ink-2)}
-.group-label{
-  font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-4);margin:56px 0 0;padding-bottom:12px;border-bottom:1px solid var(--rule);
-}
-.group-label:first-of-type{margin-top:40px}
+section{padding-block:clamp(46px,6vw,84px)}
+.shead{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.shead h2{font:800 clamp(24px,3.2vw,38px)/1.14 var(--sans);letter-spacing:-.032em;margin:0}
+.shead .idx{font:500 12px/1 var(--mono);color:var(--mint);border:1px solid var(--line2);border-radius:999px;padding:7px 12px}
+.sintro{margin:0 0 30px;max-width:66ch;color:var(--ink2)}
 
-.entry{
-  display:grid;grid-template-columns:300px minmax(0,1fr);
-  gap:clamp(22px,3.4vw,52px);padding-block:34px;border-top:1px solid var(--rule);
-}
-.entry:first-of-type{border-top:0}
-.entry-aside{font:400 11.5px/1.75 var(--mono);color:var(--ink-4)}
-.entry-aside .stack{display:block}
-.entry-aside .count{display:block;margin-top:8px;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.plate{display:block;margin-bottom:14px;border:1px solid var(--rule-2);background:var(--sunk);line-height:0}
-.plate img{width:100%;height:auto;display:block}
-.plate:hover{border-color:var(--ink-3)}
-.entry h3{font:600 clamp(19px,1.9vw,24px)/1.2 var(--sans);letter-spacing:-0.02em;margin:0 0 10px}
-.entry h3 a{text-decoration:none}
-.entry h3 a::after{content:" ↗";font-family:var(--mono);font-size:.56em;color:var(--ink-4);vertical-align:3px}
-.entry h3 a:hover{color:var(--ink)}
-.entry h3 a:hover::after{color:var(--ink)}
-.entry p{margin:0 0 16px;max-width:var(--measure);color:var(--ink-2);font-size:16px}
-.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.checks li{
-  position:relative;padding-left:24px;
-  font:400 12px/1.6 var(--mono);color:var(--ink-3);
-}
-.checks li::before{content:"";position:absolute;left:0;top:8px;width:12px;height:1px;background:var(--ink-4)}
-.checks b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
-.entry-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:20px;font:400 12px/1 var(--mono)}
-.entry-links a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule-2);padding-bottom:2px}
-.entry-links a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* terminal */
+.term{background:#0B0E18;border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.4)}
+html[data-theme="light"] .term{background:#0B0E18}
+.term-bar{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid #1D2333;background:#0F1320}
+.term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.term-bar .t{margin-left:8px;font:400 11.5px/1 var(--mono);color:#6E7691}
+.term pre{margin:0;padding:18px 18px 22px;font:400 12.8px/1.85 var(--mono);color:#C8D0E4;overflow-x:auto}
+.term .c{color:#37E2C0}.term .o{color:#7C86A2}.term .ok{color:#9BE88F}.term .w{color:#F5B14C}
 
-.note{
-  margin-top:40px;border:1px solid var(--rule);border-left:2px solid var(--ink-4);
-  background:var(--panel);padding:22px 24px;
-}
-.note h3{font:600 16px/1.3 var(--sans);margin:0 0 10px}
-.note p{margin:0 0 10px;max-width:var(--measure);color:var(--ink-2);font-size:15.5px}
-.note p:last-child{margin-bottom:0}
+/* stack */
+.stackgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 18px}
+.sc h4{margin:0 0 12px;font:600 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:500 11.5px/1 var(--mono);padding:7px 11px;border-radius:999px;background:var(--card2);border:1px solid var(--line2);color:var(--ink2)}
 
-/* Experience: .roles > .role > (.when, div). The bullets inside stay a plain
-   list — an earlier rule grid-columned every <li> and squeezed each bullet
-   into the 200px date gutter. */
-.roles{margin-top:8px}
-.role{
-  display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(18px,3vw,44px);
-  padding-block:26px;border-top:1px solid var(--rule);
-}
-.role .when{font:400 11.5px/1.7 var(--mono);color:var(--ink-4)}
-.role h3{font:600 17px/1.3 var(--sans);letter-spacing:-0.015em;margin:0 0 5px}
-.role .org{font:400 12px/1 var(--mono);color:var(--ink-3);margin:0 0 14px}
-.role ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.role ul li{
-  position:relative;padding-left:22px;max-width:var(--measure);
-  color:var(--ink-2);font-size:15.5px;line-height:1.6;
-}
-.role ul li::before{content:"";position:absolute;left:0;top:11px;width:11px;height:1px;background:var(--ink-4)}
+/* projects */
+.projects{display:grid;gap:16px}
+.proj{display:grid;grid-template-columns:380px minmax(0,1fr);gap:clamp(18px,2.6vw,34px);
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;transition:border-color .25s,transform .25s}
+.proj:hover{border-color:var(--line2);transform:translateY(-2px)}
+.proj-shot{position:relative;display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line2);line-height:0;background:#0B131B}
+.proj-shot img{width:100%;height:auto;display:block;transition:transform .4s}
+.proj-shot:hover img{transform:scale(1.035)}
+.shot-cta{position:absolute;left:10px;bottom:10px;font:600 11.5px/1 var(--mono);background:var(--grad);color:#08121A;padding:8px 12px;border-radius:999px;opacity:0;transition:opacity .25s}
+.proj-shot:hover .shot-cta{opacity:1}
+.proj-body{padding:2px 4px 4px 0;display:flex;flex-direction:column}
+.proj-top{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.pnum{font:700 12px/1 var(--mono);color:var(--mint)}
+.pill{font:500 11px/1 var(--mono);color:var(--ink3);border:1px solid var(--line2);border-radius:999px;padding:6px 10px}
+.proj h3{margin:0 0 9px;font:700 clamp(18px,2vw,22px)/1.22 var(--sans);letter-spacing:-.022em}
+.proj p{margin:0 0 14px;color:var(--ink2);font-size:15px;max-width:62ch}
+.proj-kick{font:500 12px/1.5 var(--mono);color:var(--amber);margin-top:12px}
+.proj-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lnk{text-decoration:none;font:600 13px/1 var(--sans);padding:11px 17px;border-radius:999px;border:1px solid var(--line2);color:var(--ink)}
+.lnk.primary{background:var(--grad);color:#08121A;border-color:transparent}
+.lnk:hover{border-color:var(--mint)}
 
-/* Skills is a <dl>: style dt/dd, not invented .k/.v classes. */
-.skills{margin:8px 0 0}
-.skill-row{
-  display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(18px,3vw,44px);
-  padding-block:18px;border-top:1px solid var(--rule);
-}
-.skill-row dt{font:500 11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
-.skill-row dd{margin:0;color:var(--ink-2);font-size:15.5px;max-width:var(--measure)}
+/* experience */
+.tl{display:grid;gap:0}
+.tlrow{display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(16px,3vw,40px);padding-block:22px;border-top:1px solid var(--line)}
+.tlrow .when{font:400 12px/1.7 var(--mono);color:var(--ink3)}
+.tlrow h3{margin:0 0 3px;font:700 17px/1.3 var(--sans);letter-spacing:-.015em}
+.tlrow .org{font:400 12px/1 var(--mono);color:var(--mint);margin-bottom:11px}
+.tlrow ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.tlrow ul li{position:relative;padding-left:20px;color:var(--ink2);font-size:15px;max-width:64ch}
+.tlrow ul li::before{content:"▸";position:absolute;left:0;color:var(--violet);font-size:12px;top:3px}
 
-/* How I work: four habits, each with the instance where it cost something. */
-.method{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,44px);margin-top:34px}
-.method > div{border-top:1px solid var(--rule);padding-top:20px}
-.method h3{font:600 17px/1.3 var(--sans);letter-spacing:-0.015em;margin:0 0 10px}
-.method p{margin:0 0 12px;color:var(--ink-2);font-size:15.5px;max-width:52ch}
-.method .instance{
-  font:400 12px/1.65 var(--mono);color:var(--ink-3);
-  border-left:1px solid var(--rule-2);padding-left:14px;margin-bottom:0;
-}
-.method .instance b{color:var(--ink);font-weight:500}
+/* profiles + contact */
+.cards2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;text-decoration:none;display:block;transition:transform .25s,border-color .25s}
+.pcard:hover{transform:translateY(-3px);border-color:var(--mint)}
+.pcard .ic{font-size:28px}
+.pcard h4{margin:11px 0 4px;font:700 16px/1 var(--sans)}
+.pcard p{margin:0;font:400 12px/1.5 var(--mono);color:var(--ink3)}
+.contact{background:linear-gradient(150deg,var(--card2),var(--card));border:1px solid var(--line2);border-radius:20px;padding:clamp(26px,4vw,46px);text-align:center}
+.contact h2{margin:0 0 12px;font:800 clamp(24px,3.4vw,38px)/1.14 var(--sans);letter-spacing:-.03em}
+.contact p{margin:0 auto 24px;max-width:52ch;color:var(--ink2)}
+footer{border-top:1px solid var(--line);padding-block:34px;font:400 12px/1.8 var(--mono);color:var(--ink3)}
+footer a{color:var(--ink2)}
 
-/* ---------- status bar ---------- */
-.statusbar{
-  position:sticky;bottom:0;z-index:30;background:rgba(8,9,10,.88);backdrop-filter:blur(10px);
-  border-top:1px solid var(--rule);
-}
-.statusbar .wrap{
-  display:flex;gap:18px;align-items:center;justify-content:space-between;
-  height:40px;font:400 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);
-}
-.statusbar .tags{display:flex;gap:14px;overflow:hidden;white-space:nowrap}
-.statusbar .live{color:var(--ink-3);white-space:nowrap;text-align:right}
-
-footer{padding-block:56px}
-footer .colophon{font:400 11.5px/1.8 var(--mono);color:var(--ink-4);max-width:var(--measure)}
-footer a{color:var(--ink-2)}
-
-/* ---------- command palette ---------- */
-dialog#pal{
-  border:1px solid var(--rule-2);background:var(--panel);color:var(--ink);
-  padding:0;width:min(560px,92vw);margin-top:12vh;
-}
-dialog#pal::backdrop{background:rgba(4,5,6,.72)}
-#pal input{
-  width:100%;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--ink);
-  font:400 15px/1 var(--sans);padding:16px 18px;outline:none;
-}
-#pal ul{list-style:none;margin:0;padding:6px;max-height:52vh;overflow:auto}
-#pal li{padding:0}
-#pal li a{
-  display:flex;gap:14px;align-items:baseline;padding:10px 12px;text-decoration:none;
-  font:400 13px/1.3 var(--sans);color:var(--ink-2);
-}
-#pal li a .n{font:500 11px/1 var(--mono);color:var(--ink-4);width:20px;flex:none}
-#pal li a .t{font:400 11px/1 var(--mono);color:var(--ink-4);margin-left:auto}
-#pal li[aria-selected="true"] a,#pal li a:hover{background:#15181B;color:var(--ink)}
-#pal .hint{padding:10px 18px;border-top:1px solid var(--rule);font:400 10.5px/1 var(--mono);color:var(--ink-4);letter-spacing:.1em;text-transform:uppercase}
-
-@media (max-width:980px){
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
-  .card{transform:none;box-shadow:none}
-  .deck:hover .card{transform:none}
-  #motes{height:44%}
-  .entry{grid-template-columns:minmax(0,1fr)}
-  .plate{max-width:360px}
-  .role,.skill-row{grid-template-columns:minmax(0,1fr);gap:10px}
-  .method{grid-template-columns:minmax(0,1fr)}
-  .tagline{display:none}
-}
-@media (max-width:640px){
-  .topnav a:not(.keep){display:none}
-  .statusbar .tags{display:none}
-}
+html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+html.js .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
+  html.js .reveal{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+  html{scroll-behavior:auto}
 }
-</style>
-<style>
-  /* The artifact host ships these; a standalone page has to say them itself. */
-  html { color-scheme: light dark; }
-  img { max-width: 100%; }
-  [hidden] { display: none !important; }
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .idcard{max-width:300px}
+  .proj{grid-template-columns:minmax(0,1fr)}
+  .tlrow{grid-template-columns:minmax(0,1fr);gap:8px}
+  .greet{display:none}
+}
+@media (max-width:680px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .navlinks{display:none}
+  .hire{left:12px;bottom:16px;padding:12px 18px}
+}
 </style>
 </head>
 <body>
+<script>
+/* Opt in to the reveal animation only when scripting is live, so a blocked or
+   broken script can never leave the page invisible. */
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("js");
+</script>
 
-<header class="topbar">
+<a class="hire" href="#contact">Hire me</a>
+
+<nav class="nav">
   <div class="wrap">
-    <span class="brand">mdzayd1003<span>.github.io</span></span>
-    <span class="tagline">ML engineer who ships the evidence</span>
-    <nav class="topnav">
-      <a href="#work" class="keep">work</a>
-      <a href="#method">method</a>
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="https://github.com/mdzayd1003" class="keep">github</a>
-      <button class="kbd" id="palbtn" aria-haspopup="dialog">⌘K</button>
-    </nav>
+    <span class="logo">MZ<span>.dev</span></span>
+    <span class="greet" id="greet"></span>
+    <div class="navlinks">
+      <a href="#run">Run it</a><a href="#stack">Stack</a><a href="#work">Projects</a>
+      <a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </div>
+    <button class="tbtn" id="theme" aria-label="Switch colour theme">◐</button>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="hero-grid">
+    <figure class="idcard reveal" style="margin:0">
+      <div class="mono-face"><span>MZ</span></div>
+      <figcaption>
+        <div class="nm">Muhammad Zaid</div>
+        <div class="rl">ML Engineer &middot; Evaluation &amp; Measurement</div>
+      </figcaption>
+    </figure>
+    <div>
+      <div class="avail"><span class="dot"></span> Available for hire &middot; Ilmenau, DE</div>
+      <p class="eyebrow">M.Sc. Research in Media Engineering &middot; TU Ilmenau</p>
+      <h1>Anyone can train a model.<br><span class="g">Proving it worked</span> is the job.</h1>
+      <p class="termline"><span style="color:var(--ink3)">$</span> LLM systems &middot; evaluation &middot; computer vision &middot; acoustics<span class="cur">_</span></p>
+      <p class="sub">Seven projects, each in its own repository, each with a live demo and the
+      check that backs it. Every test suite runs offline on a laptop CPU — clone it and it works.</p>
+      <div class="stats">
+        <div class="stat"><b class="m">7</b><span>projects shipped</span></div>
+        <div class="stat"><b class="v">723</b><span>automated tests</span></div>
+        <div class="stat"><b class="a">0</b><span>GPU hours needed</span></div>
+        <div class="stat"><b>3.5</b><span>yrs industry</span></div>
+      </div>
+      <div class="btns">
+        <a class="btn p" href="#work">See the seven</a>
+        <a class="btn s" href="https://github.com/mdzayd1003">GitHub</a>
+        <a class="btn s" href="#run">Run it yourself</a>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <canvas id="motes" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Muhammad Zaid / Ilmenau, DE</p>
-        <h1 class="display">Anyone can train<br>a model. Proving<br><span class="fade">it worked.</span></h1>
-        <p class="hero-lede">
-          LLM and multi-agent systems, evaluation harnesses, computer vision and
-          acoustics. Seven projects, each shipped with the check that backs it —
-          and a demo you can open right now.
-        </p>
-        <div class="cta">
-          <a class="btn" href="#work">See the seven</a>
-          <a class="btn ghost" href="#method">How I work</a>
-          <a class="btn bare" href="mailto:zayd.cu@gmail.com">zayd.cu@gmail.com</a>
-        </div>
-      </div>
+<section id="run" class="wrap">
+  <div class="shead"><span class="idx">01</span><h2>Run it yourself</h2></div>
+  <p class="sintro">No GPU, no dataset download, no API key. This is the whole setup for any of the seven —
+  the numbers below are what the suite actually prints.</p>
+  <div class="term reveal">
+    <div class="term-bar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+      <span class="t">zsh &mdash; edge-diffraction-occlusion</span></div>
+<pre><span class="c">$</span> git clone https://github.com/mdzayd1003/edge-diffraction-occlusion
+<span class="c">$</span> cd edge-diffraction-occlusion/python &amp;&amp; pip install -r requirements.txt
+<span class="c">$</span> python -m pytest -q
+<span class="ok">..........................................................  [100%]</span>
+<span class="o">82 passed in 4.11s</span>
 
-      <div class="deck">
-        <p class="deck-note">One geometry from project 06, measured against an independent reference.</p>
-        <figure class="card">
-          <div class="card-head">
-            <span>barrier insertion loss · third-octave</span>
-            <span class="legend">
-              <span><i style="background:#F4F5F6"></i>UTD — mine</span>
-              <span><i style="background:#71767C"></i>Maekawa</span>
-            </span>
+<span class="c">$</span> make quick
+<span class="o">spectrum      </span> 24 third-octave bands, 50 Hz - 8 kHz
+<span class="o">study         </span> 126 configurations  (7 heights x 6 distances x 3 wedge angles)
+<span class="o">validation    </span> half-field at shadow boundary  <span class="ok">0.50 +/- 0.03</span>
+<span class="o">              </span> reciprocity                    <span class="ok">machine precision</span>
+<span class="o">              </span> vs Maekawa, 7 octaves          <span class="w">+1.4 to +1.7 dB</span>
+<span class="o">              </span> MATLAB vs Python, 3024 values  <span class="ok">max delta 0.002 dB</span></pre>
+  </div>
+</section>
+
+<section id="stack" class="wrap">
+  <div class="shead"><span class="idx">02</span><h2>Tech stack</h2></div>
+  <p class="sintro">Everything here shows up in the work below, not only on this page.</p>
+  <div class="stackgrid">
+    <div class="sc reveal"><h4>LLMs, RAG &amp; agents</h4><div class="chips">
+      <span class="chip">RAG</span><span class="chip">FAISS</span><span class="chip">tool calling</span><span class="chip">multi-agent</span>
+      <span class="chip">LLM-as-judge</span><span class="chip">Ollama</span><span class="chip">Streamlit</span></div></div>
+    <div class="sc reveal"><h4>Machine &amp; deep learning</h4><div class="chips">
+      <span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">TensorFlow</span><span class="chip">ResNet-18</span>
+      <span class="chip">ViT</span><span class="chip">calibration</span><span class="chip">ablations</span></div></div>
+    <div class="sc reveal"><h4>Experimentation &amp; stats</h4><div class="chips">
+      <span class="chip">Wilson CI</span><span class="chip">bootstrap</span><span class="chip">permutation</span><span class="chip">McNemar</span>
+      <span class="chip">Cohen&rsquo;s κ</span><span class="chip">Holm</span><span class="chip">NumPy</span><span class="chip">SciPy</span></div></div>
+    <div class="sc reveal"><h4>Software &amp; DevOps</h4><div class="chips">
+      <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C/C++</span><span class="chip">SQL</span>
+      <span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">Linux</span></div></div>
+  </div>
+</section>
+
+<section id="work" class="wrap">
+  <div class="shead"><span class="idx">03</span><h2>Projects</h2></div>
+  <p class="sintro">Seven repositories, seven browser demos. What&rsquo;s listed under each one is the
+  check, not the feature &mdash; the thing that would have caught me if the result were wrong.</p>
+  <div class="projects">
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/multi-agent-research-assistant/" aria-label="Open the Multi-Agent Research Assistant with RAG demo">
+          <img src="img/multi-agent-research-assistant.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Multi-Agent Research Assistant with RAG results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">01</span><span class="pill">82 tests</span></div>
+          <h3>Multi-Agent Research Assistant with RAG</h3>
+          <p>An orchestrator splits a question into subtasks and hands them to researcher, analyst, writer and critic agents over one JSON tool-calling contract. The retrieval stack is written from scratch, so every stage is inspectable.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Ollama</span><span class="chip">FAISS</span><span class="chip">Docker</span></div>
+          <div class="proj-kick">runs with no model, no network</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/multi-agent-research-assistant/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/multi-agent-research-assistant">Source &amp; tests</a>
           </div>
-          <div class="card-body">
-            <svg viewBox="0 0 690 272" role="img" aria-label="Insertion loss in decibels against third-octave band frequency from 50 hertz to 8 kilohertz. My UTD model rises from 7.5 to 26.3 decibels; Maekawa's empirical chart rises from 6.6 to 24.9, staying 1.4 to 1.7 decibels below throughout.">
-            <!-- grid -->
-            <g stroke="#191C1F" stroke-width="1">
-              <line x1="58" y1="236" x2="614" y2="236"></line>
-              <line x1="58" y1="183.5" x2="614" y2="183.5"></line>
-              <line x1="58" y1="131" x2="614" y2="131"></line>
-              <line x1="58" y1="78.5" x2="614" y2="78.5"></line>
-              <line x1="58" y1="26" x2="614" y2="26"></line>
-            </g>
-            <!-- y labels -->
-            <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#5A6067" text-anchor="end">
-              <text x="48" y="240">0</text>
-              <text x="48" y="187.5">7</text>
-              <text x="48" y="135">14</text>
-              <text x="48" y="82.5">21</text>
-              <text x="48" y="30">28</text>
-              <text x="48" y="12" fill="#8A9096">dB</text>
-            </g>
-            <!-- x labels -->
-            <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#5A6067" text-anchor="middle">
-              <text x="83.3" y="254">63</text>
-              <text x="158.4" y="254">125</text>
-              <text x="234.3" y="254">250</text>
-              <text x="310.3" y="254">500</text>
-              <text x="386.2" y="254">1k</text>
-              <text x="462.1" y="254">2k</text>
-              <text x="538.1" y="254">4k</text>
-              <text x="614" y="254">8k</text>
-              <text x="336" y="269" font-size="12" fill="#494E54">third-octave band centre (Hz)</text>
-            </g>
-            <polygon fill="#F4F5F6" fill-opacity="0.17" stroke="none" points="58.0,179.8 109.5,171.2 158.4,162.1 209.9,151.2 259.6,139.6 310.3,126.7 361.7,112.7 410.6,98.8 462.1,83.8 511.9,69.2 562.5,54.2 614.0,38.9 614.0,49.4 562.5,64.7 511.9,79.8 462.1,94.5 410.6,109.8 361.7,124.1 310.3,138.7 259.6,152.1 209.9,163.8 158.4,173.8 109.5,181.2 58.0,186.9"></polygon>
-            <!-- reference series -->
-            <polyline fill="none" stroke="#71767C" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"
-              points="58.0,186.9 109.5,181.2 158.4,173.8 209.9,163.8 259.6,152.1 310.3,138.7 361.7,124.1 410.6,109.8 462.1,94.5 511.9,79.8 562.5,64.7 614.0,49.4"></polyline>
-            <!-- measured series -->
-            <polyline fill="none" stroke="#F4F5F6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"
-              points="58.0,179.8 109.5,171.2 158.4,162.1 209.9,151.2 259.6,139.6 310.3,126.7 361.7,112.7 410.6,98.8 462.1,83.8 511.9,69.2 562.5,54.2 614.0,38.9"></polyline>
-            <!-- emphasised endpoints -->
-            <circle cx="614" cy="49.4" r="4" fill="#71767C" stroke="#0E1012" stroke-width="2"></circle>
-            <circle cx="614" cy="38.9" r="4" fill="#F4F5F6" stroke="#0E1012" stroke-width="2"></circle>
-            <g font-family="IBM Plex Mono, monospace" font-size="13" font-weight="500">
-              <text x="624" y="42.5" fill="#F4F5F6">26.3</text>
-              <text x="624" y="53" fill="#71767C">24.9</text>
-            </g>
-            <!-- crosshair -->
-            <line id="xh" x1="0" y1="26" x2="0" y2="236" stroke="#8A98A5" stroke-width="1" stroke-dasharray="3 3" opacity="0"></line>
-          </svg>
-            <figcaption>A 3&nbsp;m barrier, source 5&nbsp;m in front, receiver 10&nbsp;m behind.
-            Maekawa's chart comes from <b>measurements, not from my theory</b> — so agreement
-            is evidence rather than circularity. Mine sits <b>1.4–1.7 dB above</b> across
-            seven octaves, the known offset for this method.</figcaption>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/principal-agent-drift/" aria-label="Open the Principal-Agent Drift in LLM Negotiation demo">
+          <img src="img/principal-agent-drift.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Principal-Agent Drift in LLM Negotiation results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">02</span><span class="pill">79 tests</span></div>
+          <h3>Principal-Agent Drift in LLM Negotiation</h3>
+          <p>Does an agent stay inside its mandate when the other side pushes? 45 episodes across five pressure conditions, with violations detected by rules that always attach the quote that triggered them.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">stdlib only</span><span class="chip">Wilson CI</span><span class="chip">McNemar</span></div>
+          <div class="proj-kick">judge vs rules, κ = 0.62 [0.31, 0.88]</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/principal-agent-drift/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/principal-agent-drift">Source &amp; tests</a>
           </div>
-        </figure>
-      </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/cifar10c-robustness/" aria-label="Open the Robustness under Image Corruption demo">
+          <img src="img/cifar10c-robustness.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Robustness under Image Corruption results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">03</span><span class="pill">163 tests</span></div>
+          <h3>Robustness under Image Corruption</h3>
+          <p>The Hendrycks & Dietterich CIFAR-10-C protocol end to end: 19 corruptions × 5 severities, per-corruption error, mCE and relative mCE — with every corruption function reimplemented so it regenerates offline.</p>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">NumPy</span><span class="chip">SciPy</span><span class="chip">ResNet-18</span></div>
+          <div class="proj-kick">no 2.9 GB download</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/cifar10c-robustness/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/cifar10c-robustness">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/" aria-label="Open the CNN vs Vision Transformer demo">
+          <img src="img/cnn-vs-vit-cifar100.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the CNN vs Vision Transformer results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">04</span><span class="pill">102 tests</span></div>
+          <h3>CNN vs Vision Transformer</h3>
+          <p>ResNet-18 against ViT-Tiny on CIFAR-100, judged on the class-level analysis rather than the headline: per-class F1 deltas, confused pairs, and how much confusion stays inside a superclass.</p>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">timm</span><span class="chip">ViT-Tiny</span><span class="chip">CIFAR-100</span></div>
+          <div class="proj-kick">11.2M vs 5.4M params</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/cnn-vs-vit-cifar100">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/cifar10-model-analysis/" aria-label="Open the Deep Learning Model Analysis demo">
+          <img src="img/cifar10-model-analysis.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Deep Learning Model Analysis results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">05</span><span class="pill">99 tests</span></div>
+          <h3>Deep Learning Model Analysis</h3>
+          <p>Less “train a model”, more “look inside one”. Calibration with ECE, MCE and Brier; layer-wise linear and k-NN probes; linear CKA between layers; effective dimensionality; a t-SNE that ships with its numbers.</p>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">CKA</span><span class="chip">t-SNE</span></div>
+          <div class="proj-kick">temperature fitted held-out</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/cifar10-model-analysis/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/cifar10-model-analysis">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/edge-diffraction-occlusion/" aria-label="Open the Sound Occlusion via Edge Diffraction demo">
+          <img src="img/edge-diffraction-occlusion.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Sound Occlusion via Edge Diffraction results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">06</span><span class="pill">83 + 12 tests</span></div>
+          <h3>Sound Occlusion via Edge Diffraction</h3>
+          <p>Uniform Theory of Diffraction over a rigid wedge, implemented twice — MATLAB and Python — and tested against each other across a 126-configuration study in 24 third-octave bands at 48 kHz.</p>
+          <div class="chips"><span class="chip">MATLAB</span><span class="chip">Octave</span><span class="chip">Python</span><span class="chip">UTD</span></div>
+          <div class="proj-kick">ports agree to 0.002 dB</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/edge-diffraction-occlusion/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/edge-diffraction-occlusion">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/cross-lingual-consistency/" aria-label="Open the Cross-Lingual Consistency demo">
+          <img src="img/cross-lingual-consistency.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Cross-Lingual Consistency results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">07</span><span class="pill">110 tests</span></div>
+          <h3>Cross-Lingual Consistency</h3>
+          <p>Does a model answer the same way in Hindi as in English? 40 matched items across six categories, each carrying a comprehension control asked in a separate turn so a refusal is attributable to behaviour, not parsing.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">stdlib only</span><span class="chip">हिन्दी</span><span class="chip">English</span></div>
+          <div class="proj-kick">control gates every item</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/cross-lingual-consistency/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/cross-lingual-consistency">Source &amp; tests</a>
+          </div>
+        </div>
+      </article></div>
+</section>
+
+<section id="experience" class="wrap">
+  <div class="shead"><span class="idx">04</span><h2>Experience</h2></div>
+  <p class="sintro">Three and a half years building fintech SaaS for Fortune 2000 clients, promoted across four roles.</p>
+  <div class="tl">
+    <div class="tlrow reveal"><div class="when">Jul 2023 &mdash; Aug 2024</div>
+      <div><h3>Techno Functional Consultant</h3><div class="org">HighRadius Technologies &middot; Hyderabad, India</div>
+      <ul><li>Delivered ML-enabled functionality across Python systems &mdash; model integration, testing and deployment into simulation environments &mdash; with Git-based version control and structured release workflows.</li>
+      <li>Wrote Python automation for recurring operational workflows: 100% incident remedy, ~30% faster resolution across 25+ daily tickets at a 99.7% success rate. Received the Highflyer Award.</li>
+      <li>Standardised technical documentation across the product suite, cutting documentation effort by ~40%.</li></ul></div></div>
+    <div class="tlrow reveal"><div class="when">Jul 2022 &mdash; Jul 2023</div>
+      <div><h3>Associate Techno Functional Consultant</h3><div class="org">HighRadius Technologies</div>
+      <ul><li>Resolved 380 P1&ndash;P3 production incidents with 100% SLA adherence in 2023 through MySQL analysis, structured testing and root-cause investigation; authored the Confluence knowledge base used by global teams.</li></ul></div></div>
+    <div class="tlrow reveal"><div class="when">Aug 2021 &mdash; Jun 2022</div>
+      <div><h3>Associate Techno Functional Consultant, Intern</h3><div class="org">HighRadius Technologies</div>
+      <ul><li>Ran daily MySQL data-quality and sanity checks to monitor workflows and detect anomalies; owned PGP, SSO and month-end operational activities at 108% of annual target.</li></ul></div></div>
+    <div class="tlrow reveal"><div class="when">2024 &mdash; present</div>
+      <div><h3>M.Sc. Research in Media Engineering</h3><div class="org">TU Ilmenau, Germany</div>
+      <ul><li>Media technology, audio signal processing and applied machine learning. The acoustics work above comes out of this.</li></ul></div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="shead"><span class="idx">05</span><h2>Find me</h2></div>
+  <div class="cards2">
+    <a class="pcard reveal" href="https://github.com/mdzayd1003"><div class="ic">⌘</div><h4>GitHub</h4><p>@mdzayd1003<br>7 public repos &middot; 723 tests</p></a>
+    <a class="pcard reveal" href="https://www.linkedin.com/in/muhammad-zaid-0072b3184"><div class="ic">in</div><h4>LinkedIn</h4><p>muhammad-zaid</p></a>
+    <a class="pcard reveal" href="mailto:zayd.cu@gmail.com"><div class="ic">✉</div><h4>Email</h4><p>zayd.cu@gmail.com</p></a>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="contact reveal">
+    <h2>Let&rsquo;s talk</h2>
+    <p>Looking for ML engineering, evaluation or applied-research roles in Germany or remote.
+    Open to relocation. English C1 &middot; Hindi native &middot; German A1 and improving.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn p" href="mailto:zayd.cu@gmail.com">Email me</a>
+      <a class="btn s" href="https://www.linkedin.com/in/muhammad-zaid-0072b3184">LinkedIn</a>
     </div>
   </div>
 </section>
 
-<main>
-  <section id="method">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>How I work</h2>
-        <p class="sec-intro">
-          Four habits that show up in every project below. Each one is followed by the
-          place it actually cost me something — a result I had to weaken, a claim I had
-          to drop, a bug the habit caught.
-        </p>
-      </div>
-
-      <div class="method">
-        <div>
-          <h3>Check against something I didn't write</h3>
-          <p>
-            A model that agrees with itself has told you nothing. I look for an
-            independent reference — an empirical chart, a second implementation, a
-            hand-labelled sample — and report the gap.
-          </p>
-          <p class="instance">The MATLAB and Python ports of the acoustics model agree to <b>0.002 dB</b> across all 3,024 band values. A test fails above 0.05.</p>
-        </div>
-        <div>
-          <h3>Report the interval, not the number</h3>
-          <p>
-            Small samples make point estimates theatre. Proportions get Wilson
-            intervals, differences get permutation tests, agreement gets a bootstrap —
-            and the interval decides what I'm allowed to claim.
-          </p>
-          <p class="instance">A 1.7-point accuracy gap between two vision models came back at <b>p = 0.61</b>. I reported it as no difference.</p>
-        </div>
-        <div>
-          <h3>Never repair the evidence</h3>
-          <p>
-            When a model emits malformed output, retrying until it parses deletes the
-            measurement. Parse failures are recorded, counted, and excluded — because
-            how often a model holds its format is part of the result.
-          </p>
-          <p class="instance">2 of 45 judge verdicts came back as prose. They stayed in the report as <b>parse failures</b>, not as retries.</p>
-        </div>
-        <div>
-          <h3>Say which numbers aren't real yet</h3>
-          <p>
-            Placeholder results are fine; unlabelled placeholder results are not. Where
-            a run is synthetic, the report says so, and a test asserts that it says so.
-          </p>
-          <p class="instance">The listening-test ratings are simulated. It's in the file's provenance record, in the report, and in a <b>test</b>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Selected work</h2>
-        <p class="sec-intro">
-          Seven projects, each its own repository, each runnable end to end from one
-          command with no downloads and no GPU. <strong>718 Python tests and 12 Octave
-          tests</strong> across the set. What's listed under each is the check, not the
-          feature.
-        </p>
-      </div>
-
-      <h3 class="eyebrow group-label">LLM systems &amp; evaluation</h3>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/multi-agent-research-assistant/" aria-label="Open the live demo"><img src="img/multi-agent-research-assistant.webp" width="380" height="238" loading="lazy" alt="Diagram: an orchestrator fanning out to researcher, analyst, writer and critic, beside a bar strip of chunk cosine scores with the top four retained."></a>
-          <span class="stack">Python · Streamlit<br>Ollama · Docker<br>FAISS optional</span>
-          <span class="count">82 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/multi-agent-research-assistant">Multi-Agent Research Assistant with RAG</a></h3>
-          <p>
-            An orchestrator splits a question into subtasks and hands them to researcher,
-            analyst, writer and critic agents over one JSON tool-calling contract. The
-            retrieval side is written from scratch rather than imported — recursive
-            splitting, a hashing embedder, exact cosine search — so every stage is
-            inspectable, and FAISS only takes over once a corpus is large enough to earn it.
-          </p>
-          <ul class="checks">
-            <li>Whole pipeline runs with <b>no model and no network</b>; the offline path is the one the tests exercise.</li>
-            <li>Every LLM call, tool call and agent message traced to JSONL, fsynced per line.</li>
-            <li>Malformed replies end the agent's turn and are counted — <b>never retried</b>.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/multi-agent-research-assistant/">▶ Live demo</a><a href="https://github.com/mdzayd1003/multi-agent-research-assistant">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/principal-agent-drift/" aria-label="Open the live demo"><img src="img/principal-agent-drift.webp" width="380" height="238" loading="lazy" alt="Diagram: five pressure conditions, nine episodes each, with violated mandates filled — 3 of 9 under control, 9 of 9 under time pressure."></a>
-          <span class="stack">Python<br>standard library only</span>
-          <span class="count">79 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/principal-agent-drift">Principal-Agent Drift in LLM Negotiation</a></h3>
-          <p>
-            Does an agent stay inside the mandate its principal gave it when the other
-            side pushes? 45 episodes across five pressure conditions, with mandate
-            violations detected by rules that always attach the quote that triggered
-            them. The counterparty is scripted, not modelled — otherwise a difference
-            between conditions could come from the counterparty rather than the pressure.
-          </p>
-          <ul class="checks">
-            <li>Judge against rules: <b>κ = 0.62</b>, 95% CI <b>[0.31, 0.88]</b> by bootstrap.</li>
-            <li>Exact McNemar <b>p = 0.031</b> — the judge is systematically more lenient, not just noisier.</li>
-            <li>Wilson intervals throughout: at n = 9 per condition, a Wald interval is degenerate.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/principal-agent-drift/">▶ Live demo</a><a href="https://github.com/mdzayd1003/principal-agent-drift">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/cross-lingual-consistency/" aria-label="Open the live demo"><img src="img/cross-lingual-consistency.webp" width="380" height="238" loading="lazy" alt="Diagram: six categories, matched English and Hindi item counts side by side, each gated by a comprehension control."></a>
-          <span class="stack">Python<br>standard library only<br>English · Hindi</span>
-          <span class="count">110 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/cross-lingual-consistency">Cross-Lingual Consistency in Model Behaviour</a></h3>
-          <p>
-            A matched English–Hindi prompt set asking whether a model gives the same
-            answer, makes the same decision, and refuses in the same places in both
-            languages. Every item carries a comprehension control, so
-            <em>“behaved differently”</em> can be separated from
-            <em>“didn't understand the Hindi”</em> — without it the headline result is
-            unreadable.
-          </p>
-          <ul class="checks">
-            <li>Devanagari digits normalised before scoring, so <b>४२ and 42</b> are one answer, not a difference.</li>
-            <li>Refusal cues held per language and both sets always checked — models given Hindi sometimes refuse in English.</li>
-            <li>Hedges are excluded by name: <em>“I can't be certain”</em> is not a refusal.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/cross-lingual-consistency/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cross-lingual-consistency">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <h3 class="eyebrow group-label">Deep learning &amp; computer vision</h3>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/cifar10c-robustness/" aria-label="Open the live demo"><img src="img/cifar10c-robustness.webp" width="380" height="238" loading="lazy" alt="Heatmap: fifteen corruptions down, five severities across, shaded by error rate and sorted by mean."></a>
-          <span class="stack">PyTorch · NumPy<br>SciPy · ResNet-18<br>CIFAR-10-C</span>
-          <span class="count">163 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/cifar10c-robustness">Robustness under Image Corruption</a></h3>
-          <p>
-            The Hendrycks &amp; Dietterich protocol end to end: 19 corruptions × 5
-            severities, per-corruption error, mCE and relative mCE. The corruptions are
-            implemented here rather than downloaded, so the benchmark regenerates from
-            CIFAR-10 offline instead of needing a 2.9 GB archive.
-          </p>
-          <ul class="checks">
-            <li>Severity ordering tested per corruption — including the <b>three</b> where pixel distance legitimately isn't monotone, each checked on the quantity that is.</li>
-            <li>CIFAR-10 has no canonical AlexNet baseline, so mCE normalises against a reference you train, and says so when you don't.</li>
-            <li>A baseline that's perfect on a corruption drops it from the mean and names it, rather than letting an infinity in.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/cifar10c-robustness/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cifar10c-robustness">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/" aria-label="Open the live demo"><img src="img/cnn-vs-vit-cifar100.webp" width="380" height="238" loading="lazy" alt="Diagram: the 61 images the two models disagree on, split 33 to ResNet-18 and 28 to ViT-Tiny."></a>
-          <span class="stack">PyTorch · timm<br>ResNet-18 · ViT-Tiny<br>CIFAR-100</span>
-          <span class="count">102 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/cnn-vs-vit-cifar100">CNN vs Vision Transformer</a></h3>
-          <p>
-            ResNet-18 against ViT-Tiny across a 16-run ablation grid — but the headline
-            number is the least interesting output. The work is in the class-level
-            analysis: where each model wins class by class, what it confuses, and how
-            wrong it is when it's wrong.
-          </p>
-          <ul class="checks">
-            <li>Both compared with <b>paired McNemar</b> — same test set, so unpaired intervals would be the wrong test.</li>
-            <li>Errors staying inside a CIFAR-100 superclass, against the <b>~4%</b> chance floor a test pins.</li>
-            <li>ViT at native 32×32 with a 4-pixel patch, and each architecture keeps its own optimiser recipe — both stated, because both change what the comparison means.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cnn-vs-vit-cifar100">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/cifar10-model-analysis/" aria-label="Open the live demo"><img src="img/cifar10-model-analysis.webp" width="380" height="238" loading="lazy" alt="Reliability diagram: measured accuracy against confidence, below the perfect-calibration diagonal, with ECE 0.0713."></a>
-          <span class="stack">PyTorch<br>scikit-learn<br>ResNet-18</span>
-          <span class="count">99 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/cifar10-model-analysis">Deep Learning Model Analysis</a></h3>
-          <p>
-            Less “train a model”, more “look inside one”. Calibration with ECE, MCE and
-            Brier; layer-wise linear and k-NN probes; linear CKA between layers;
-            effective dimensionality; a t-SNE that ships with the numbers it stands in for.
-          </p>
-          <ul class="checks">
-            <li>Temperature fitted on a <b>held-out split</b> — fitting it on the test set gives a number that can't be wrong, and so says nothing.</li>
-            <li>CKA between the last stage and its pooled output must be <b>1.00</b>; it's a free correctness check on the taps, asserted every run.</li>
-            <li>MCE ignores near-empty bins, which otherwise report 1.0 about a single sample.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/cifar10-model-analysis/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cifar10-model-analysis">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <h3 class="eyebrow group-label">Acoustics &amp; perception</h3>
-
-      <article class="entry">
-        <div class="entry-aside">
-          <a class="plate" href="https://mdzayd1003.github.io/edge-diffraction-occlusion/" aria-label="Open the live demo"><img src="img/edge-diffraction-occlusion.webp" width="380" height="238" loading="lazy" alt="Section: a source, a barrier, and a receiver in the geometric shadow, with sound bending over the edge."></a>
-          <span class="stack">MATLAB (Octave)<br>Python port<br>48 kHz</span>
-          <span class="count">83 + 12 tests</span>
-        </div>
-        <div>
-          <h3><a href="https://github.com/mdzayd1003/edge-diffraction-occlusion">Sound Occlusion via Edge Diffraction</a></h3>
-          <p>
-            How much does a barrier actually block? Uniform Theory of Diffraction over a
-            rigid wedge, a 126-configuration crossed parameter study in 24 third-octave
-            bands, and two independent implementations that are tested against each
-            other. The figure at the top of this page is one geometry from this study.
-          </p>
-          <ul class="checks">
-            <li>At the shadow boundary the field is <b>0.50 ± 0.03</b> of free field — exact by theory, nothing fitted to produce it.</li>
-            <li>Reciprocity holds to machine precision. It didn't at first: an angular separation taken modulo 2π isn't symmetric, and that broke everything above it.</li>
-            <li>MATLAB and Python agree to <b>0.002 dB</b>; a test fails above 0.05.</li>
-          </ul>
-          <div class="entry-links"><a href="https://mdzayd1003.github.io/edge-diffraction-occlusion/">▶ Live demo</a><a href="https://github.com/mdzayd1003/edge-diffraction-occlusion">Source &amp; tests</a></div>
-        </div>
-      </article>
-
-      <div class="note">
-        <h3>What these numbers are</h3>
-        <p>
-          Every figure on this page comes from a run you can reproduce from the linked
-          repository. Several come from <em>synthetic</em> or <em>simulated</em> data —
-          the quick paths that let each project run on a laptop CPU with no downloads —
-          and where that's true, the repository says so in the results directory, in the
-          report, and in a test that asserts the report says so.
-        </p>
-        <p>
-          Concretely: the acoustics numbers are real output of the real model, but its
-          listening-test ratings are generated rather than collected. The CIFAR results
-          in each <code>results/</code> folder are quick runs on synthetic data proving
-          the pipeline, not statements about ResNet-18. Full-scale numbers go in after a
-          GPU run, and not before.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Experience</h2>
-        <p class="sec-intro">
-          Three and a half years building fintech SaaS for Fortune 2000 clients, promoted
-          across four roles. Enterprise delivery is where the habits above came from:
-          releases people depend on, incidents with SLAs, and documentation someone else
-          has to read at 2am.
-        </p>
-      </div>
-
-      <div class="roles">
-        <div class="role">
-          <div class="when">Jul 2023 — Aug 2024</div>
-          <div>
-            <h3>Techno Functional Consultant</h3>
-            <div class="org">HighRadius Technologies · Hyderabad, India</div>
-            <ul>
-              <li>Delivered ML-enabled functionality across Python systems — model integration, testing and deployment into simulation environments — with Git-based version control and structured release workflows; built XAML/WPF interfaces around ML models.</li>
-              <li>Wrote Python automation for recurring operational workflows: 100% incident remedy, ~30% faster resolution across 25+ daily tickets at a 99.7% success rate. Received the Highflyer Award.</li>
-              <li>Standardised technical documentation across the product suite, cutting documentation effort by ~40%.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Jul 2022 — Jul 2023</div>
-          <div>
-            <h3>Associate Techno Functional Consultant</h3>
-            <div class="org">HighRadius Technologies</div>
-            <ul>
-              <li>Resolved 380 P1–P3 production incidents with 100% SLA adherence in 2023 through MySQL analysis, structured testing and root-cause investigation; authored the Confluence knowledge base used by global teams.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Aug 2021 — Jun 2022</div>
-          <div>
-            <h3>Associate Techno Functional Consultant, Intern</h3>
-            <div class="org">HighRadius Technologies</div>
-            <ul>
-              <li>Ran daily MySQL data-quality and sanity checks to monitor workflows and detect anomalies; owned PGP, SSO and month-end operational activities at 108% of annual target.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Jan 2021 — Apr 2021</div>
-          <div>
-            <h3>Tech Intern</h3>
-            <div class="org">HighRadius Technologies</div>
-            <ul>
-              <li>Contributed to an AI-enabled fintech B2B cloud application across data modelling, ML integration, UI components and backend development.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">2025 — present</div>
-          <div>
-            <h3>M.Sc. Research in Media Engineering</h3>
-            <div class="org">Technische Universität Ilmenau · Germany</div>
-            <ul>
-              <li>Machine learning and deep learning, signal processing, perceptual modelling, controlled experimental evaluation.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">2018 — 2022</div>
-          <div>
-            <h3>B.E. Computer Science and Engineering</h3>
-            <div class="org">Chandigarh University · India</div>
-            <ul>
-              <li>Computer architecture, operating systems, data structures, multi-threaded programming.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Skills</h2>
-        <p class="sec-intro">Everything listed here appears in the work above, not only on this page.</p>
-      </div>
-
-      <dl class="skills">
-        <div class="skill-row">
-          <dt>LLMs, RAG &amp; agents</dt>
-          <dd>Retrieval augmented generation, FAISS, HuggingFace embeddings, tool calling and MCP-style tool interfaces, multi-agent orchestration, agent-to-agent messaging, prompt and context design, LLM-as-judge evaluation, running open models locally, Streamlit</dd>
-        </div>
-        <div class="skill-row">
-          <dt>Machine &amp; deep learning</dt>
-          <dd>PyTorch, scikit-learn, TensorFlow, CNNs (ResNet-18), Vision Transformers, transfer learning, hyperparameter tuning, robustness testing, ablation studies, representation analysis, calibration, per-class precision/recall and macro F1</dd>
-        </div>
-        <div class="skill-row">
-          <dt>Experimentation &amp; statistics</dt>
-          <dd>Controlled experiment design, Wilson intervals, bootstrap confidence intervals, permutation tests, exact McNemar, Cohen's κ, Holm correction, sensitivity and parameter studies, failure-mode analysis, pandas, NumPy, SciPy, MATLAB</dd>
-        </div>
-        <div class="skill-row">
-          <dt>Software &amp; DevOps</dt>
-          <dd>Python, Java, C/C++, SQL/MySQL, JavaScript, object-oriented design, data structures and algorithms, Git and GitHub, GitHub Actions, Jenkins CI/CD, Gradle, Docker, Linux, XAML/WPF, REST-style APIs, test design</dd>
-        </div>
-        <div class="skill-row">
-          <dt>Ways of working</dt>
-          <dd>Agile/Scrum, JIRA, Confluence, technical documentation, code review, root-cause investigation, AI-assisted development with critical review</dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <h2>Let's talk</h2>
-    <p>
-      I'm looking for ML engineering and research roles in Germany — LLM and agentic
-      systems, evaluation, or applied computer vision. Happy to walk through any result
-      on this page, including the ones that didn't work.
-    </p>
-    <p class="contact">
-      <a class="primary" href="mailto:zayd.cu@gmail.com">zayd.cu@gmail.com</a>
-      <a href="https://www.linkedin.com/in/muhammad-zaid-0072b3184">LinkedIn</a>
-      <a href="https://github.com/mdzayd1003">github.com/mdzayd1003</a>
-      <a href="mailto:muhammad-zaid@tu-ilmenau.de">University address</a>
-    </p>
-    <p class="colophon">
-      Set in Archivo, Newsreader and IBM Plex Mono. The figure above is real output of
-      the edge-diffraction study, drawn to a log-frequency scale.<br>
-      Awards: HighRadius Highflyer Award · Certifications: Python Data Structures
-      (University of Michigan), Google Project Management, Google SEO Fundamentals (UC Davis)<br>
-      Volunteering: Intercultural Week Ilmenau (ISWI e.V.) 2026 · Mental Health of
-      Students working group
-    </p>
-  </div>
+<footer class="wrap">
+  Built by hand &mdash; no framework, no build step, one HTML file.
+  Every demo runs the real algorithm in your browser; the acoustics port agrees with the Python to 0.0013 dB.
+  Results marked as quick-path runs are on synthetic data and say so in their reports.<br>
+  <a href="https://github.com/mdzayd1003">github.com/mdzayd1003</a>
 </footer>
-
-<script>
-(function () {
-  // Crosshair + readout on the hero figure. The chart is fully drawn in the
-  // markup, so if this never runs the page still reads correctly.
-  var frame = document.getElementById('frame');
-  var svg = frame && frame.querySelector('svg');
-  var tip = document.getElementById('tip');
-  var xh = document.getElementById('xh');
-  if (!frame || !svg || !tip || !xh) return;
-
-  var data = [[58,50,7.49,6.55],[109.5,80,8.64,7.31],[158.4,125,9.86,8.3],[209.9,200,11.3,9.63],
-              [259.6,315,12.85,11.18],[310.3,500,14.57,12.97],[361.7,800,16.44,14.92],
-              [410.6,1250,18.29,16.83],[462.1,2000,20.29,18.86],[511.9,3150,22.24,20.83],
-              [562.5,5000,24.24,22.84],[614,8000,26.28,24.88]];
-
-  function label(hz) { return hz >= 1000 ? (hz / 1000) + ' kHz' : hz + ' Hz'; }
-
-  function move(event) {
-    var box = svg.getBoundingClientRect();
-    var point = event.touches ? event.touches[0] : event;
-    var vx = (point.clientX - box.left) / box.width * 690;
-
-    var best = data[0];
-    for (var i = 1; i < data.length; i++) {
-      if (Math.abs(data[i][0] - vx) < Math.abs(best[0] - vx)) best = data[i];
-    }
-
-    xh.setAttribute('x1', best[0]);
-    xh.setAttribute('x2', best[0]);
-    xh.setAttribute('opacity', '1');
-
-    tip.innerHTML = label(best[1]) + '&nbsp; <b>' + best[2].toFixed(1) + '</b> / <i>' +
-                    best[3].toFixed(1) + '</i> dB';
-    tip.style.left = (best[0] / 690 * box.width + (box.left - frame.getBoundingClientRect().left)) + 'px';
-    tip.style.opacity = '1';
-  }
-
-  function leave() { xh.setAttribute('opacity', '0'); tip.style.opacity = '0'; }
-
-  frame.addEventListener('mousemove', move);
-  frame.addEventListener('touchmove', move, { passive: true });
-  frame.addEventListener('mouseleave', leave);
-  frame.addEventListener('touchend', leave);
-})();
-</script>
-
-
-<div class="statusbar">
-  <div class="wrap">
-    <div class="tags"><span>LLM systems</span><span>Evaluation</span><span>Computer vision</span><span>Acoustics</span></div>
-    <div class="live"><span id="moteline">723 tests — each mote is one</span></div>
-  </div>
-</div>
-
-<dialog id="pal" aria-label="Jump to a project">
-  <input id="palq" type="text" placeholder="Jump to a project…" autocomplete="off" aria-label="Filter projects">
-  <ul id="pallist"></ul>
-  <p class="hint">↑↓ move · ⏎ open demo · esc close</p>
-</dialog>
 
 <script>
 (function(){
   "use strict";
-  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---- the mote field: 723 dots, one per automated test in the seven repos ---- */
-  var TESTS = 723;
-  var cv = document.getElementById("motes"), ctx = cv && cv.getContext("2d");
-  if (ctx) {
-    var dots = [], W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2);
-    function size(){
-      var r = cv.getBoundingClientRect();
-      W = Math.max(1, r.width); H = Math.max(1, r.height);
-      cv.width = W * dpr; cv.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function seed(){
-      dots.length = 0;
-      for (var i = 0; i < TESTS; i++) {
-        var t = i / TESTS;
-        dots.push({
-          x: Math.random() * W,
-          // denser toward the floor, so it reads as settled dust rather than noise
-          y: H - Math.pow(Math.random(), 1.7) * H,
-          r: 0.45 + Math.random() * 1.25,
-          a: 0.14 + (1 - t) * 0.50 * Math.random(),
-          vx: (Math.random() - 0.5) * 0.34,
-          vy: -0.16 - Math.random() * 0.62,
-          ph: Math.random() * 6.2832
-        });
-      }
-    }
-    function draw(){
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < dots.length; i++) {
-        var d = dots[i];
-        ctx.globalAlpha = d.a;
-        ctx.fillStyle = "#EDEFF1";
-        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 6.2832); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-    }
-    function step(){
-      for (var i = 0; i < dots.length; i++) {
-        var d = dots[i];
-        d.ph += 0.006;
-        d.x += d.vx + Math.sin(d.ph) * 0.16; d.y += d.vy;
-        if (d.y < -4) { d.y = H + 4; d.x = Math.random() * W; }
-        if (d.x < -4) d.x = W + 4; else if (d.x > W + 4) d.x = -4;
-      }
-      draw();
-      raf = requestAnimationFrame(step);
-    }
-    var raf = 0;
-    function boot(){ size(); seed(); if (reduce) { draw(); } else { cancelAnimationFrame(raf); raf = requestAnimationFrame(step); } }
-    boot();
-    addEventListener("resize", function(){ cancelAnimationFrame(raf); boot(); });
-  }
-
-  /* ---- command palette ---- */
-  var ITEMS = [
-    ["01","Multi-Agent Research Assistant","multi-agent-research-assistant"],
-    ["02","Principal-Agent Drift","principal-agent-drift"],
-    ["03","Corruption Robustness","cifar10c-robustness"],
-    ["04","CNN vs Vision Transformer","cnn-vs-vit-cifar100"],
-    ["05","Deep Learning Model Analysis","cifar10-model-analysis"],
-    ["06","Sound Occlusion via Edge Diffraction","edge-diffraction-occlusion"],
-    ["07","Cross-Lingual Consistency","cross-lingual-consistency"]
-  ];
-  var pal = document.getElementById("pal"), q = document.getElementById("palq"),
-      list = document.getElementById("pallist"), sel = 0, shown = ITEMS;
-  function render(){
-    var t = q.value.trim().toLowerCase();
-    shown = ITEMS.filter(function(it){ return !t || (it[0]+" "+it[1]+" "+it[2]).toLowerCase().indexOf(t) > -1; });
-    if (sel >= shown.length) sel = Math.max(0, shown.length - 1);
-    list.innerHTML = shown.map(function(it, i){
-      return '<li aria-selected="' + (i === sel) + '"><a href="https://mdzayd1003.github.io/' + it[2] + '/">' +
-             '<span class="n">' + it[0] + '</span><span>' + it[1] + '</span><span class="t">demo</span></a></li>';
-    }).join("");
-  }
-  function open(){ if (!pal.open) { pal.showModal(); q.value = ""; sel = 0; render(); q.focus(); } }
-  document.getElementById("palbtn").addEventListener("click", open);
-  q.addEventListener("input", function(){ sel = 0; render(); });
-  addEventListener("keydown", function(e){
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); open(); return; }
-    if (!pal.open) return;
-    if (e.key === "ArrowDown") { e.preventDefault(); sel = Math.min(sel + 1, shown.length - 1); render(); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); sel = Math.max(sel - 1, 0); render(); }
-    else if (e.key === "Enter" && shown[sel]) { e.preventDefault(); location.href = "https://mdzayd1003.github.io/" + shown[sel][2] + "/"; }
+  var root = document.documentElement, btn = document.getElementById("theme");
+  try { var t = localStorage.getItem("mz-theme"); if (t) root.setAttribute("data-theme", t); } catch(e){}
+  btn.addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("mz-theme", next); } catch(e){}
   });
-  render();
+
+  var h = new Date().getHours();
+  document.getElementById("greet").textContent =
+    (h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening") + " — thanks for stopping by";
+
+  var els = document.querySelectorAll(".reveal");
+  var showAll = function(){ for (var i=0;i<els.length;i++) els[i].classList.add("in"); };
+  setTimeout(showAll, 2500);   // failsafe: nothing stays hidden
+  if (!("IntersectionObserver" in window)) { els.forEach(function(e){ e.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function(rows){
+    rows.forEach(function(r){ if (r.isIntersecting) { r.target.classList.add("in"); io.unobserve(r.target); } });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: .06 });
+  els.forEach(function(e){ io.observe(e); });
 })();
 </script>
-
 </body>
 </html>
