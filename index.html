@@ -266,13 +266,38 @@ section > .wrap { padding-block: clamp(44px, 6vw, 76px); }
 
 .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
 .checks li {
-  display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 9px;
+  /* Not a grid: a grid container makes every <b> inside its own grid item, so
+     emphasised words broke onto their own rows. Absolute marker keeps the same
+     16px + 9px indent while the text stays one inline flow. */
+  position: relative; padding-left: 25px;
   font-family: var(--mono); font-size: 12px; line-height: 1.55; color: var(--ink-2);
 }
 .checks li::before {
-  content: "▍"; color: var(--brass); font-size: 11px; line-height: 1.5;
+  content: "▍"; position: absolute; left: 0; top: 0;
+  color: var(--brass); font-size: 11px; line-height: 1.55;
 }
 .checks b { color: var(--brass-b); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ---------- Demo plate + links ---------- */
+.plate {
+  display: block; margin-bottom: 12px;
+  border: 1px solid var(--rule); background: var(--sunk);
+  line-height: 0;
+}
+.plate img { width: 100%; height: auto; display: block; }
+.plate:hover { border-color: var(--brass); }
+.entry-links {
+  margin-top: 14px; display: flex; flex-wrap: wrap; gap: 20px;
+  font-family: var(--mono); font-size: 12px;
+}
+.entry-links a {
+  color: var(--signal); text-decoration: none;
+  border-bottom: 1px solid transparent; padding-bottom: 1px;
+}
+.entry-links a:hover { border-bottom-color: var(--signal); }
+@media (max-width: 620px) {
+  .plate { max-width: 340px; }
+}
 
 /* ---------- Provenance note ---------- */
 .note { margin-top: 36px; border: 1px solid var(--rule-2); border-left: 3px solid var(--brass); background: var(--surface); padding: 22px 24px; }
@@ -490,6 +515,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/multi-agent-research-assistant/" aria-label="Open the live demo"><img src="img/multi-agent-research-assistant.webp" width="380" height="238" loading="lazy" alt="Screenshot of the retrieval demo: a query, its ranked chunks and their cosine scores"></a>
           <span class="stack">Python · Streamlit<br>Ollama · Docker<br>FAISS optional</span>
           <span class="count">82 tests</span>
         </div>
@@ -507,11 +533,13 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>Every LLM call, tool call and agent message traced to JSONL, fsynced per line.</li>
             <li>Malformed replies end the agent's turn and are counted — <b>never retried</b>.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/multi-agent-research-assistant/">▶ Live demo</a><a href="https://github.com/mdzayd1003/multi-agent-research-assistant">Source &amp; tests</a></div>
         </div>
       </article>
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/principal-agent-drift/" aria-label="Open the live demo"><img src="img/principal-agent-drift.webp" width="380" height="238" loading="lazy" alt="Screenshot of the transcript browser: a negotiation episode with its flagged mandate violations"></a>
           <span class="stack">Python<br>standard library only</span>
           <span class="count">79 tests</span>
         </div>
@@ -529,11 +557,13 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>Exact McNemar <b>p = 0.031</b> — the judge is systematically more lenient, not just noisier.</li>
             <li>Wilson intervals throughout: at n = 9 per condition, a Wald interval is degenerate.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/principal-agent-drift/">▶ Live demo</a><a href="https://github.com/mdzayd1003/principal-agent-drift">Source &amp; tests</a></div>
         </div>
       </article>
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/cross-lingual-consistency/" aria-label="Open the live demo"><img src="img/cross-lingual-consistency.webp" width="380" height="238" loading="lazy" alt="Screenshot of the scorer: matched English and Hindi items side by side"></a>
           <span class="stack">Python<br>standard library only<br>English · Hindi</span>
           <span class="count">110 tests</span>
         </div>
@@ -552,6 +582,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>Refusal cues held per language and both sets always checked — models given Hindi sometimes refuse in English.</li>
             <li>Hedges are excluded by name: <em>“I can't be certain”</em> is not a refusal.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/cross-lingual-consistency/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cross-lingual-consistency">Source &amp; tests</a></div>
         </div>
       </article>
 
@@ -559,6 +590,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/cifar10c-robustness/" aria-label="Open the live demo"><img src="img/cifar10c-robustness.webp" width="380" height="238" loading="lazy" alt="Screenshot of the robustness table: per-corruption error across five severities"></a>
           <span class="stack">PyTorch · NumPy<br>SciPy · ResNet-18<br>CIFAR-10-C</span>
           <span class="count">163 tests</span>
         </div>
@@ -575,11 +607,13 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>CIFAR-10 has no canonical AlexNet baseline, so mCE normalises against a reference you train, and says so when you don't.</li>
             <li>A baseline that's perfect on a corruption drops it from the mean and names it, rather than letting an infinity in.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/cifar10c-robustness/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cifar10c-robustness">Source &amp; tests</a></div>
         </div>
       </article>
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/" aria-label="Open the live demo"><img src="img/cnn-vs-vit-cifar100.webp" width="380" height="238" loading="lazy" alt="Screenshot of the head-to-head: per-class F1 deltas between ResNet-18 and ViT-Tiny"></a>
           <span class="stack">PyTorch · timm<br>ResNet-18 · ViT-Tiny<br>CIFAR-100</span>
           <span class="count">102 tests</span>
         </div>
@@ -596,11 +630,13 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>Errors staying inside a CIFAR-100 superclass, against the <b>~4%</b> chance floor a test pins.</li>
             <li>ViT at native 32×32 with a 4-pixel patch, and each architecture keeps its own optimiser recipe — both stated, because both change what the comparison means.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/cnn-vs-vit-cifar100/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cnn-vs-vit-cifar100">Source &amp; tests</a></div>
         </div>
       </article>
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/cifar10-model-analysis/" aria-label="Open the live demo"><img src="img/cifar10-model-analysis.webp" width="380" height="238" loading="lazy" alt="Screenshot of the analysis viewer: calibration, probes and layer-wise CKA"></a>
           <span class="stack">PyTorch<br>scikit-learn<br>ResNet-18</span>
           <span class="count">99 tests</span>
         </div>
@@ -616,6 +652,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>CKA between the last stage and its pooled output must be <b>1.00</b>; it's a free correctness check on the taps, asserted every run.</li>
             <li>MCE ignores near-empty bins, which otherwise report 1.0 about a single sample.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/cifar10-model-analysis/">▶ Live demo</a><a href="https://github.com/mdzayd1003/cifar10-model-analysis">Source &amp; tests</a></div>
         </div>
       </article>
 
@@ -623,6 +660,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
 
       <article class="entry">
         <div class="entry-aside">
+          <a class="plate" href="https://mdzayd1003.github.io/edge-diffraction-occlusion/" aria-label="Open the live demo"><img src="img/edge-diffraction-occlusion.webp" width="380" height="238" loading="lazy" alt="Screenshot of the barrier calculator: insertion loss recomputing against Maekawa"></a>
           <span class="stack">MATLAB (Octave)<br>Python port<br>48 kHz</span>
           <span class="count">83 + 12 tests</span>
         </div>
@@ -639,6 +677,7 @@ footer p { color: var(--mast-ink2); max-width: 54ch; }
             <li>Reciprocity holds to machine precision. It didn't at first: an angular separation taken modulo 2π isn't symmetric, and that broke everything above it.</li>
             <li>MATLAB and Python agree to <b>0.002 dB</b>; a test fails above 0.05.</li>
           </ul>
+          <div class="entry-links"><a href="https://mdzayd1003.github.io/edge-diffraction-occlusion/">▶ Live demo</a><a href="https://github.com/mdzayd1003/edge-diffraction-occlusion">Source &amp; tests</a></div>
         </div>
       </article>
 
