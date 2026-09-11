@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Muhammad Zaid — ML engineer. LLM and multi-agent systems, evaluation harnesses, computer vision and acoustics. Seven projects, 723 offline tests, each with a live demo.">
+<meta name="description" content="Muhammad Zaid — ML engineer. LLM and multi-agent systems, evaluation harnesses, computer vision and acoustics. Fourteen projects, 1,134 offline tests, each with a live demo.">
 <meta name="author" content="Muhammad Zaid">
 <link rel="canonical" href="https://mdzayd1003.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mdzayd1003.github.io/">
 <meta property="og:title" content="Muhammad Zaid — ML Engineer">
-<meta property="og:description" content="Seven projects, 723 offline tests, seven live demos. LLM systems, evaluation, computer vision, acoustics.">
+<meta property="og:description" content="Fourteen projects, 1,134 offline tests, fourteen live demos. LLM systems, evaluation, computer vision, detection, acoustics.">
 <meta name="twitter:card" content="summary">
 <title>Muhammad Zaid — ML Engineer</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230C0D16'/%3E%3Cpath d='M18 74 L50 26 L82 74' fill='none' stroke='%2337E2C0' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -250,16 +250,16 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentEl
       <p class="eyebrow">M.Sc. Research in Media Engineering &middot; TU Ilmenau</p>
       <h1>Anyone can train a model.<br><span class="g">Proving it worked</span> is the job.</h1>
       <p class="termline"><span style="color:var(--ink3)">$</span> LLM systems &middot; evaluation &middot; computer vision &middot; acoustics<span class="cur">_</span></p>
-      <p class="sub">Seven projects, each in its own repository, each with a live demo and the
+      <p class="sub">Fourteen projects, each in its own repository, each with a live demo and the
       check that backs it. Every test suite runs offline on a laptop CPU — clone it and it works.</p>
       <div class="stats">
-        <div class="stat"><b class="m">7</b><span>projects shipped</span></div>
-        <div class="stat"><b class="v">723</b><span>automated tests</span></div>
+        <div class="stat"><b class="m">14</b><span>projects shipped</span></div>
+        <div class="stat"><b class="v">1,134</b><span>automated tests</span></div>
         <div class="stat"><b class="a">0</b><span>GPU hours needed</span></div>
         <div class="stat"><b>3.5</b><span>yrs industry</span></div>
       </div>
       <div class="btns">
-        <a class="btn p" href="#work">See the seven</a>
+        <a class="btn p" href="#work">See the fourteen</a>
         <a class="btn s" href="https://github.com/mdzayd1003">GitHub</a>
         <a class="btn s" href="#run">Run it yourself</a>
       </div>
@@ -269,7 +269,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentEl
 
 <section id="run" class="wrap">
   <div class="shead"><span class="idx">01</span><h2>Run it yourself</h2></div>
-  <p class="sintro">No GPU, no dataset download, no API key. This is the whole setup for any of the seven —
+  <p class="sintro">No GPU, no dataset download, no API key. This is the whole setup for any of the fourteen —
   the numbers below are what the suite actually prints.</p>
   <div class="term reveal">
     <div class="term-bar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
@@ -311,7 +311,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentEl
 
 <section id="work" class="wrap">
   <div class="shead"><span class="idx">03</span><h2>Projects</h2></div>
-  <p class="sintro">Seven repositories, seven browser demos. What&rsquo;s listed under each one is the
+  <p class="sintro">Fourteen repositories, fourteen browser demos. What&rsquo;s listed under each one is the
   check, not the feature &mdash; the thing that would have caught me if the result were wrong.</p>
   <div class="projects">
       <article class="proj reveal">
@@ -432,6 +432,125 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentEl
             <a class="lnk" href="https://github.com/mdzayd1003/cross-lingual-consistency">Source &amp; tests</a>
           </div>
         </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/open-vocab-detection/" aria-label="Open the Open-Vocabulary Detection with a VLM demo">
+          <img src="img/open-vocab-detection.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Open-Vocabulary Detection with a VLM results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">08</span><span class="pill">55 tests</span></div>
+          <h3>Open-Vocabulary Detection with a VLM</h3>
+          <p>Type a class the model was never trained to detect, then score the boxes it returns. COCO-style mAP with the matching rule and the interpolation rule written out, because those two choices are where detection benchmarks quietly stop agreeing with each other.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">OWL-ViT</span><span class="chip">COCO</span><span class="chip">mAP</span></div>
+          <div class="proj-kick">runs with no weights, no network</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/open-vocab-detection/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/open-vocab-detection">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/ood-detection-benchmark/" aria-label="Open the Out-of-Distribution Detection demo">
+          <img src="img/ood-detection-benchmark.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Out-of-Distribution Detection results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">09</span><span class="pill">54 tests</span></div>
+          <h3>Out-of-Distribution Detection</h3>
+          <p>Five OOD scores &mdash; MSP, max-logit, energy, Mahalanobis, kNN &mdash; on shifts whose severity is set rather than guessed. On a pure scale shift MSP sits at 0.56 AUROC, barely above chance, while Mahalanobis reaches 0.94 on the same data.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">AUROC</span><span class="chip">FPR@95</span></div>
+          <div class="proj-kick">every score normalised to one sign convention</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/ood-detection-benchmark/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/ood-detection-benchmark">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/data-drift-monitoring/" aria-label="Open the Data Drift Monitoring demo">
+          <img src="img/data-drift-monitoring.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Data Drift Monitoring results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">10</span><span class="pill">53 tests</span></div>
+          <h3>Data Drift Monitoring</h3>
+          <p>Feature-wise KS, PCA-projected KS and a joint MMD with a permutation null, scored on detection delay against false alarms. At 50 features and &alpha;=0.05 with no drift at all, an uncorrected monitor has a 92% chance of crying wolf every window.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">KS</span><span class="chip">MMD</span><span class="chip">Holm / BH</span></div>
+          <div class="proj-kick">corrections cut 6 false alarms to 0</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/data-drift-monitoring/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/data-drift-monitoring">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/3d-multi-object-tracking/" aria-label="Open the 3D Multi-Object Tracking demo">
+          <img src="img/3d-multi-object-tracking.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the 3D Multi-Object Tracking results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">11</span><span class="pill">62 tests</span></div>
+          <h3>3D Multi-Object Tracking</h3>
+          <p>Kalman filtering and Hungarian assignment over oriented 3D boxes. IoU association has a ceiling no threshold can lift &mdash; and not for the usual reason: where it collapses, only 3.7% of true pairs fail to overlap and the cost still ranks correctly 99.5% of the time.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Kalman</span><span class="chip">Hungarian</span><span class="chip">CLEAR MOT</span></div>
+          <div class="proj-kick">a distance gate is worth +0.27 MOTA</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/3d-multi-object-tracking/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/3d-multi-object-tracking">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/trajectory-prediction/" aria-label="Open the Trajectory Prediction demo">
+          <img src="img/trajectory-prediction.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Trajectory Prediction results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">12</span><span class="pill">59 tests</span></div>
+          <h3>Trajectory Prediction</h3>
+          <p>Four-second forecasting, plus a model built specifically to cheat: it fans guesses across a cone and ignores its input. minADE ranks it second of six. Top-1 error ranks it last, by three times. NLL is fooled too.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">ADE / FDE</span><span class="chip">AMOTA</span><span class="chip">ridge</span></div>
+          <div class="proj-kick">Brier-minFDE provably cannot catch it</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/trajectory-prediction/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/trajectory-prediction">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/aerial-segmentation/" aria-label="Open the Aerial Segmentation demo">
+          <img src="img/aerial-segmentation.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Aerial Segmentation results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">13</span><span class="pill">64 tests</span></div>
+          <h3>Aerial Segmentation</h3>
+          <p>A one-pixel boundary error costs IoU as 1/(1+kP/A) &mdash; validated against measurement to 1.1e&minus;16. The same error leaves a lake at 0.94 IoU and a tree line at 0.53, so mIoU silently weights thin classes an order of magnitude more heavily.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">mIoU</span><span class="chip">MRF</span></div>
+          <div class="proj-kick">every predicted pixel cross-checked</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/aerial-segmentation/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/aerial-segmentation">Source &amp; tests</a>
+          </div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <a class="proj-shot" href="https://mdzayd1003.github.io/quantization-latency-bench/" aria-label="Open the Quantisation and Latency demo">
+          <img src="img/quantization-latency-bench.webp" width="380" height="238" loading="lazy" alt="Figure drawn from the Quantisation and Latency results">
+          <span class="shot-cta">▶ open demo</span>
+        </a>
+        <div class="proj-body">
+          <div class="proj-top"><span class="pnum">14</span><span class="pill">57 tests</span></div>
+          <h3>Quantisation &amp; Latency</h3>
+          <p>Redistribute scale inside a trained network and it computes the same function &mdash; verified to 1e&minus;8 &mdash; but 4-bit accuracy falls from 0.90 to 0.31. Tensor error ranks the two fixes backwards, preferring the one 0.47 worse.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">INT8 / INT4</span><span class="chip">calibration</span><span class="chip">BLAS</span></div>
+          <div class="proj-kick">int8 matmul: 4× smaller, 197× slower</div>
+          <div class="proj-links">
+            <a class="lnk primary" href="https://mdzayd1003.github.io/quantization-latency-bench/">Live demo</a>
+            <a class="lnk" href="https://github.com/mdzayd1003/quantization-latency-bench">Source &amp; tests</a>
+          </div>
+        </div>
       </article></div>
 </section>
 
@@ -459,7 +578,7 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentEl
 <section class="wrap">
   <div class="shead"><span class="idx">05</span><h2>Find me</h2></div>
   <div class="cards2">
-    <a class="pcard reveal" href="https://github.com/mdzayd1003"><div class="ic">⌘</div><h4>GitHub</h4><p>@mdzayd1003<br>7 public repos &middot; 723 tests</p></a>
+    <a class="pcard reveal" href="https://github.com/mdzayd1003"><div class="ic">⌘</div><h4>GitHub</h4><p>@mdzayd1003<br>14 public repos &middot; 1,134 tests</p></a>
     <a class="pcard reveal" href="https://www.linkedin.com/in/muhammad-zaid-0072b3184"><div class="ic">in</div><h4>LinkedIn</h4><p>muhammad-zaid</p></a>
     <a class="pcard reveal" href="mailto:zayd.cu@gmail.com"><div class="ic">✉</div><h4>Email</h4><p>zayd.cu@gmail.com</p></a>
   </div>
